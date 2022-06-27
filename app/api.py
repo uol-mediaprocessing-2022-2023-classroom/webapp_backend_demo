@@ -14,6 +14,8 @@ ssl._create_default_https_context = ssl._create_unverified_context
 # List of URLs which have access to this API
 origins = [
     "http://localhost:8080",
+    "http://classify-demo.offis.de:84/",
+    "http://classify-demo.offis.de:84"
 ]
 
 app.add_middleware(
