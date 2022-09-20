@@ -14,8 +14,6 @@ ssl._create_default_https_context = ssl._create_unverified_context
 # List of URLs which have access to this API
 origins = [
     "http://localhost:8080",
-    "http://classify-demo.offis.de:84/",
-    "http://classify-demo.offis.de:84"
 ]
 
 app.add_middleware(
@@ -30,7 +28,7 @@ app.add_middleware(
 def home():
     return{"Test": "test"}
 
-# Post request for retrieving a blurred version of an image
+# Endpoint for retrieving a blurred version of an image
 # The image is fetched from the URL in the post body and a blur is applied to it, the result is returned
 @app.post("/get-blur")
 async def get_effect(request: Request, background_tasks: BackgroundTasks):
@@ -46,6 +44,7 @@ async def get_effect(request: Request, background_tasks: BackgroundTasks):
     blurImage = blurImage.filter(ImageFilter.BoxBlur(10))
     blurImage.save(img_path)
 
+    # The background task runs after the File is returned completetly
     background_tasks.add_task(remove_file, img_path)
     return FileResponse(img_path)
 
