@@ -31,7 +31,7 @@ def home():
 # Endpoint for retrieving a blurred version of an image
 # The image is fetched from the URL in the post body and a blur is applied to it, the result is returned
 @app.post("/get-blur")
-async def get_effect(request: Request, background_tasks: BackgroundTasks):
+async def get_blur(request: Request, background_tasks: BackgroundTasks):
     image = await request.json()
     id = image['id']
     cldId = image['cldId']
@@ -41,6 +41,8 @@ async def get_effect(request: Request, background_tasks: BackgroundTasks):
     
     urllib.request.urlretrieve(image_url, img_path)
     blurImage = Image.open(img_path)
+    # Here I use the Pillow library to apply a simple box blur on the fetched image, alternatively OpenCV can be used
+    # instead of Pillow
     blurImage = blurImage.filter(ImageFilter.BoxBlur(10))
     blurImage.save(img_path)
 
