@@ -13,7 +13,8 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 # List of URLs which have access to this API
 origins = [
-    "http://localhost:8080",
+    "https://localhost:8080",
+    "http://localhost:8080/",
 ]
 
 app.add_middleware(
@@ -37,9 +38,10 @@ async def get_blur(request: Request, background_tasks: BackgroundTasks):
     cldId = image['cldId']
 
     img_path = 'app/bib/' + id + ".jpg"
-    image_url = "https://cmp.photoprintit.com/api/photos/" + id + ".org?size=original&errorImage=false&cldId=" + cldId + "&clientVersion=0.0.0-apidoc"
-    
+    image_url = "https://tcmp.photoprintit.com/api/photos/" + id + ".org?size=original&errorImage=false&cldId=" + cldId + "&clientVersion=0.0.0-apidoc"
+
     urllib.request.urlretrieve(image_url, img_path)
+
     blurImage = Image.open(img_path)
     # Here I use the Pillow library to apply a simple box blur on the fetched image, alternatively OpenCV can be used
     # instead of Pillow
