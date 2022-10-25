@@ -4,7 +4,7 @@
 1. Python wird benötigt und kann hier heruntergeladen werden: https://www.python.org/downloads/ (ich nutze Python 3.10)
 2. Führe diesen Befehlt in der Konsole aus:
 ```
-pip install -r requirements.txt
+pip install -r .\requirements.txt
 ```
 
 ## Starten der App
