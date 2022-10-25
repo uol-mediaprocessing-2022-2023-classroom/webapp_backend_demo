@@ -31,14 +31,11 @@ def home():
 
 # Endpoint for retrieving a blurred version of an image
 # The image is fetched from the URL in the post body and a blur is applied to it, the result is returned
-@app.post("/get-blur")
-async def get_blur(request: Request, background_tasks: BackgroundTasks):
-    image = await request.json()
-    id = image['id']
-    cldId = image['cldId']
+@app.get("/get-blur/{cldId}/{imgId}")
+async def get_blur(cldId, imgId, background_tasks: BackgroundTasks):
 
-    img_path = 'app/bib/' + id + ".jpg"
-    image_url = "https://tcmp.photoprintit.com/api/photos/" + id + ".org?size=original&errorImage=false&cldId=" + cldId + "&clientVersion=0.0.0-apidoc"
+    img_path = 'app/bib/' + imgId + ".jpg"
+    image_url = "https://tcmp.photoprintit.com/api/photos/" + imgId + ".org?size=original&errorImage=false&cldId=" + cldId + "&clientVersion=0.0.0-uni_webapp_demo"
 
     urllib.request.urlretrieve(image_url, img_path)
 
