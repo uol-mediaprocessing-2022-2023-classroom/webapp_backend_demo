@@ -1,4 +1,4 @@
-# cewe_api_backend_demo
+# Backend Demo
 
 ## Setup
 1. Python wird benötigt und kann hier heruntergeladen werden: https://www.python.org/downloads/ (ich nutze Python 3.10)
