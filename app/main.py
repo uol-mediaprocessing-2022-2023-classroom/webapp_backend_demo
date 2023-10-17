@@ -15,7 +15,8 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 # CORS configuration: specify the origins that are allowed to make cross-site requests
 origins = [
-    "http://localhost:8080/",
+    "https://localhost:8080",
+    "http://localhost:8080",
 ]
 
 app.add_middleware(
@@ -40,7 +41,7 @@ async def get_blur(cldId: str, imgId: str, background_tasks: BackgroundTasks):
     The image is fetched from a constructed URL and then processed to apply a blur effect.
     """
     img_path = f"app/bib/{imgId}.jpg"
-    image_url = f"https://tcmp.photoprintit.com/api/photos/{imgId}.org?size=original&errorImage=false&cldId={cldId}&clientVersion=0.0.0-uni_webapp_demo"
+    image_url = f"https://cmp.photoprintit.com/api/photos/{imgId}.org?size=original&errorImage=false&cldId={cldId}&clientVersion=0.0.1-medienVerDemo"
 
     download_image(image_url, img_path)
     apply_blur(img_path)
